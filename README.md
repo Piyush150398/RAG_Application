@@ -79,15 +79,22 @@ This will start the app on a local server, where you can see a user-friendly int
 
 ### 🚶 Steps to Use the RAG Application:
 Step: 1 Enter the desired number of search results.
+
 Step: 2 Provide your OpenAI API key.
+
 Step: 3 Specify a name for your ChromaDB collection.
+
 Step: 4 Upload the PDF document.
+
 Step: 5 Type in a question related to the document.
+
 Step: 6 Click "Get Answers" to retrieve responses.
+
 Step: 7 ✅ When you're done, remember to delete the collection to free up space.
 
 ### 📊 Overview of the Application’s Process
 Document Ingestion: Users upload PDF files, which are processed to extract text.
+
 Text Chunking: LangChain’s chunking method is used to create coherent text chunks, enhancing retrieval accuracy.
 Embedding and Storage: Chunks are embedded and stored in ChromaDB, enabling fast similarity searches.
 Query Processing: User questions retrieve relevant chunks from ChromaDB.
