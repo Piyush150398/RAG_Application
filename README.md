@@ -32,3 +32,73 @@ To get started, make sure you have:
 Run the following command to install the required packages:
 ```bash
 pip install streamlit chromadb openai
+
+### Step 2: Project Structure
+Organize your project files as follows:
+
+graphql
+Copy code
+RAG_APPLICATION/
+├── app.py                  # Main Streamlit app
+├── chromadb_function.py    # Functions for interacting with ChromaDB
+├── chunking_strategy.py    # Functions for splitting text into chunks
+├── Invoke_OpenAI.py        # Functions to call OpenAI API
+├── pdf_reader.py           # PDF reading utilities
+└── mycollection/           # Folder for ChromaDB collection storage
+🔍 Overview of the Application's Components
+📂 Document Ingestion
+Users can upload PDF files, which are then read and processed to extract text.
+
+✂️ Text Chunking Strategy
+We use LangChain's recursive text chunking method to split extracted text into manageable chunks. This method respects natural language boundaries, like sentences and paragraphs, resulting in coherent chunks. This strategy is critical for improving retrieval accuracy, as it increases the likelihood of retrieving complete thoughts or sentences for more relevant, contextually accurate responses.
+
+📥 Embedding and Storage
+The chunked text is embedded and stored in ChromaDB, a vector database enabling efficient similarity search across document chunks.
+
+🔍 Query Processing and Retrieval
+When a user submits a question, the app retrieves the most relevant chunks from ChromaDB based on semantic similarity.
+
+🧠 Answer Generation
+The retrieved chunks are passed to the OpenAI API to generate a response. This RAG setup ensures that answers are both grounded in document content and articulated effectively by the language model. 💡
+
+🖥️ Building the User Interface with Streamlit
+Streamlit provides an easy way to create an interactive UI for the app. In the sidebar, users can:
+
+📄 Upload documents
+💬 Enter a question
+🔢 Configure the number of retrieval results
+🔑 Provide their OpenAI API key
+The UI also includes buttons to submit queries, display answers, and delete collections when needed. This setup makes interacting with the application smooth and enjoyable. 😊
+
+▶️ Running the App
+To launch the app locally, use:
+
+bash
+Copy code
+streamlit run app.py
+This will start the app on a local server, where you can see a user-friendly interface to upload PDFs, enter questions, and retrieve answers.
+
+🚶 Steps to Use the RAG Application:
+Enter the desired number of search results.
+Provide your OpenAI API key.
+Specify a name for your ChromaDB collection.
+Upload the PDF document.
+Type in a question related to the document.
+Click "Get Answers" to retrieve responses.
+✅ When you're done, remember to delete the collection to free up space.
+📊 Overview of the Application’s Process
+Document Ingestion: Users upload PDF files, which are processed to extract text.
+Text Chunking: LangChain’s chunking method is used to create coherent text chunks, enhancing retrieval accuracy.
+Embedding and Storage: Chunks are embedded and stored in ChromaDB, enabling fast similarity searches.
+Query Processing: User questions retrieve relevant chunks from ChromaDB.
+Answer Generation: Retrieved chunks are passed to OpenAI for response generation, ensuring answers are grounded in the document content.
+✨ Conclusion
+This RAG application combines the strengths of retrieval and generation, providing document-based answers that are both relevant and grounded in actual content. By leveraging ChromaDB for efficient retrieval and OpenAI's language model for nuanced generation, this solution can handle complex queries and large document collections with ease.
+
+🔜 This is Part I of the project. In Part II, we'll explore advanced techniques to further enhance the RAG application, such as:
+
+Retrieval Decoupling
+HyDE (Hybrid Dense-Retrieval and Exact Match)
+Contextual Query Rewriting
+Fusion Search
+These techniques can significantly boost RAG performance. You can also expand this application by adding sophisticated document processing, integrating broader language models, or connecting it with your organization’s databases or APIs.
